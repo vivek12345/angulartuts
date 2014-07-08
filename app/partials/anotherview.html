@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="col-sm-6 col-md-4" ng-repeat="course in courses | orderBy:orderTerm | filter:searchTerm">
+    <div class="thumbnail">
+      <img ng-src="{{course.pic}}" style="width:300px;height:200px;">
+      <div class="caption">
+        <h3 ng-bind="course.name"></h3>
+
+      </div>
+    </div>
+  </div>
+</div>

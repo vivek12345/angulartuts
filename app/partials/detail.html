@@ -1,0 +1,38 @@
+<div class="container">
+<div class="row">
+	<div class="col-md-3">
+		<img ng-src="{{course.pic}}" width="200px" />
+	</div>
+	<div class="col-md-4">
+		<div>
+			<a href='' ng-click="showCourseDetails(course)" class="h4">{{course.name | uppercase}}</a>
+		</div>
+		<div>
+			<p>
+				<span ng-show="!showCompleteDescription">{{course.description | limitTo : maxLength}}</span>
+				<span ng-show="showCompleteDescription">{{course.description}}</span>
+				<span ng-show="course.description.length >maxLength && !showCompleteDescription">...</span>
+				<a href='' ng-show="course.description.length >
+					maxLength && !showCompleteDescription" ng-click="showCompleteDescription = true" >more
+				</a>
+			</p>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div ng-bind="course.price | currency  ">{{course.name}}</div>
+	</div>
+	<div class="col-md-1">
+		<a ng-href='#/reviews/{{course.id}}' class="btn btn-success">Add Review</a>
+	</div>
+
+</div>
+<div class="row">
+<h1>Reviews</h1>
+<div class="col-md-3" ng-repeat="review in reviews">
+		<p ng-bind="review.name"></p>
+		<p ng-bind="review.myreview"></p>
+		<p ng-bind="review.rating"></p>
+	</div>
+
+</div>
+</div>

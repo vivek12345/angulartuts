@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row well" ng-repeat="course in courses | orderBy:orderTerm | filter:searchTerm">
+    <div class="col-md-3">
+      <img class="col-md-12 img-responsive" ng-src="{{course.pic}}"/>
+    </div>
+    <div class="col-md-6">
+    <a ng-href='#/details/{{course.id}}'><h2 ng-bind="course.name"></h2></a>
+
+      <p style="float:right;">
+
+        <span ng-bind="course.description | limitTo:300"></span>
+        <a ng-click="showCompleteDescription=true">.....More</a>
+
+      </p>
+    </div>
+    <div class="col-md-3">
+      Price:
+      <span ng-bind="course.price | currency"></span>
+    </div>
+  </div>
+</div>
