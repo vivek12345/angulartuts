@@ -10,7 +10,7 @@ angular.module('myApp.services')
 
 		function($http, $q, $resource, parseSettings) {
 /*factory('reviewProvider',function(){*/
-	var courseRef = $resource('https://api.parse.com/1/classes/courses/:course_id', null, {
+	var courseRef = $resource('https://api.parse.com/1/classes/courses/', null, {
 				get : {
 					method: 'GET',
 					headers: parseSettings,
