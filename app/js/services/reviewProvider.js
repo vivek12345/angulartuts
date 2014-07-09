@@ -6,16 +6,18 @@
 // Demonstrate how to register services
 // In this case it is a simple value service.
 angular.module('myApp.services')
-.factory('reviewProvider', ['$http', '$q', '$resource', 'parseSettings',
+.factory('reviewProvider', ['$http', '$q', '$resource','$routeParams', 'parseSettings',
 
-		function($http, $q, $resource, parseSettings) {
-/*factory('reviewProvider',function(){*/
-
-	var courseRef = $resource('https://api.parse.com/1/classes/courses/', null, {
+		function($http, $q, $resource, $routeParams,parseSettings) {
+			
+	var courseRef = $resource('https://api.parse.com/1/classes/courses/:course_id', null, {
 				get : {
 					method: 'GET',
 					headers: parseSettings,
 					isArray: true,
+					params: {
+						where : {'course_id': course_id}
+                    },
 					transformResponse : function(data){
 						var raw = angular.fromJson(data);
 						return raw.results;
@@ -54,14 +56,14 @@ angular.module('myApp.services')
         "rating":"4"
     }
 ]
-function getReviews(course_id)
+function getReviews(id)
  {
 
 
 
-
 			return courseRef.get({
-					course_id: course_id
+					course_id:id,
+					
 				});	
 			/*	var targetCourse=[];
 				console.log(id);

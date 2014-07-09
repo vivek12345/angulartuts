@@ -12,12 +12,15 @@ angular.module('myApp.controllers')
 			reviewProvider.getupdate(2);
 			reviewProvider.get(courseId).
 			$promise.then(function(data){
-				angular.forEach(data,function(item,index){
+				/*angular.forEach(data,function(item,index){
 					if(item.course_id==courseId)
 						myreviews.push(item);
-				});
-				$scope.reviews = myreviews;
-				$scope.avg=reviewProvider.getavg(myreviews);
+
+				});*/
+				/*$scope.reviews = myreviews;*/
+				$scope.reviews=data;
+		
+				$scope.avg=reviewProvider.getavg(data);
 			})
 
 
