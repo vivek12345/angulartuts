@@ -9,12 +9,10 @@
 		</div>
 		<div>
 			<p>
-				<span ng-show="!showCompleteDescription">{{course.description | limitTo : maxLength}}</span>
-				<span ng-show="showCompleteDescription">{{course.description}}</span>
-				<span ng-show="course.description.length >maxLength && !showCompleteDescription">...</span>
-				<a href='' ng-show="course.description.length >
-					maxLength && !showCompleteDescription" ng-click="showCompleteDescription = true" >more
-				</a>
+				
+				<span>{{course.description}}</span>
+				
+				
 			</p>
 		</div>
 	</div>
@@ -24,15 +22,22 @@
 	<div class="col-md-1">
 		<a ng-href='#/reviews/{{course.id}}' class="btn btn-success">Add Review</a>
 	</div>
-
-</div>
-<div class="row">
-<h1>Reviews</h1>
-<div class="col-md-3" ng-repeat="review in reviews">
-		<p ng-bind="review.name"></p>
-		<p ng-bind="review.myreview"></p>
-		<p ng-bind="review.rating"></p>
+	<div class="col-md-2 col-md-offset-1 btn btn-primary">
+		Average rating
+		<div ng-bind="avg | number:2">
+		</div>
 	</div>
 
+</div>
+<h1>Reviews</h1>
+<div class="row" style="background:#222;color:#000;">
+	<div class="col-md-3 col-md-offset-1">Username</div>
+	<div class="col-md-3 col-md-offset-1">Review</div>
+	<div class="col-md-3 col-md-offset-1">Rating</div>
+</div>
+<div class="row well" ng-repeat="review in reviews | orderBy:-review.createdAt">
+	<div class="col-md-3 col-md-offset-1" ng-bind="review.name"></div>
+	<div class="col-md-3 col-md-offset-1" ng-bind="review.myreview"></div>
+	<div class="col-md-3 col-md-offset-1" ng-bind="review.rating"></div>
 </div>
 </div>

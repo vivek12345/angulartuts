@@ -8,8 +8,13 @@
 
       <p style="float:right;">
 
-        <span ng-bind="course.description | limitTo:300"></span>
-        <a ng-click="showCompleteDescription=true">.....More</a>
+        
+        <span ng-show="!showCompleteDescription">{{course.description | limitTo : 300}}</span>
+        <span ng-show="showCompleteDescription">{{course.description}}</span>
+        <span ng-show="course.description.length >300 && !showCompleteDescription">...</span>
+        <a href='' ng-show="course.description.length >
+          300 && !showCompleteDescription" ng-click="showCompleteDescription = true" >more
+        </a>
 
       </p>
     </div>

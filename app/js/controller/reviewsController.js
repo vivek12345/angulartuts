@@ -17,4 +17,11 @@ angular.module('myApp.controllers')
 			}
 
 		}
-	]);
+	]).directive('myPreview', function()
+	{
+ 		return {
+   			restrict: 'E',
+   			templateUrl : 'partials/preview.html',
+   
+ 	}
+})

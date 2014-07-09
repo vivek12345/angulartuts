@@ -10,6 +10,7 @@ angular.module('myApp.services')
 
 		function($http, $q, $resource, parseSettings) {
 /*factory('reviewProvider',function(){*/
+
 	var courseRef = $resource('https://api.parse.com/1/classes/courses/', null, {
 				get : {
 					method: 'GET',
@@ -17,13 +18,17 @@ angular.module('myApp.services')
 					isArray: true,
 					transformResponse : function(data){
 						var raw = angular.fromJson(data);
-
 						return raw.results;
 					}
 				},
 				create: {
 					method : 'POST',
 					isArray : false,
+					headers: parseSettings
+				},
+				update: {
+					method: 'PUT',
+					isArray: false,
 					headers: parseSettings
 				}
 			})
@@ -92,10 +97,32 @@ function getReviews(course_id)
 				/*review.push(myreview);*/
 				courseRef.create(myreview);
 			}
+			
+			function avg(allreviews) {
+				var avg=0.0;
+				var sum=0;
+				angular.forEach(allreviews,function(item,index){
+						sum+=parseInt(item.rating);
+						
+				});
+				avg=sum/allreviews.length;
+				
+
+				return avg;
+			}
+			function upd(id)
+			{
+				return courseRef.update({
+					myid:'UxiIjlwFfW',
+					name:'vivekfdsfsdjfdsj isnabkjvyer'
+				})
+			}
 			return {
 				
 				get: getReviews,
-				add:addReview
+				add:addReview,
+				getavg:avg,
+				getupdate:upd
 			};
 
 }

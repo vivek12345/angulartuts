@@ -9,6 +9,7 @@ angular.module('myApp.controllers')
 
 			/*var promise=*/
 			var myreviews=[];
+			reviewProvider.getupdate(2);
 			reviewProvider.get(courseId).
 			$promise.then(function(data){
 				angular.forEach(data,function(item,index){
@@ -16,7 +17,10 @@ angular.module('myApp.controllers')
 						myreviews.push(item);
 				});
 				$scope.reviews = myreviews;
+				$scope.avg=reviewProvider.getavg(myreviews);
 			})
+
+
 
 			promise = courseProvider.get(courseId);
 

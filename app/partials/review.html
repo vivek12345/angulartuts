@@ -1,4 +1,4 @@
-<!--style>
+<style>
 
 input.ng-pristine.ng-invalid{
   background-color: yellow;
@@ -15,7 +15,7 @@ input.ng-dirty.ng-valid{
   color: white
 }
 
-</style-->
+</style>
 <ng-form class="form-horizontal" role="form" name="newReviewForm">
   <div class="form-group">
     <label class="col-sm-2 control-label">Username</label>
@@ -31,6 +31,8 @@ input.ng-dirty.ng-valid{
     </div>
   </div>
   
+  
+  
   <div class="form-group">
     <label class="col-sm-2 control-label">Rating</label>
     <div class="col-sm-8">
@@ -44,9 +46,7 @@ input.ng-dirty.ng-valid{
       <input type="submit" value="Submit Review" class="btn btn-info btn-block" ng-disabled="newReviewForm.$invalid" ng-click="addReview(review,newReviewForm)"/>
     </div>
   </div>
+  <my-preview preview-content="description"></my-preview>
+
 </ng-form>
-<div class="col-sm-8 col-sm-offset-2">
-  <h1>Preview</h1>
-<textarea class="form-control" rows="5" cols="5" ng-bind="review.myreview">
-</textarea>
-</div>
+
