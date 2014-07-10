@@ -1,11 +1,11 @@
-'use strict';
+/*'use strict';*/
 
 /* Services */
 
 
 // Demonstrate how to register services
 // In this case it is a simple value service.
-angular.module('myApp.services')
+/*angular.module('myApp.services')
 	.factory('courseProvider', ['$http', '$q',
 
 		function($http, $q) {
@@ -45,6 +45,76 @@ angular.module('myApp.services')
 				getCourses: getCourses,
 				add: addCourse,
 				get: getCourse
+			};
+
+		}
+	]);
+	*/
+	'use strict';
+
+/* Services */
+
+
+// Demonstrate how to register services
+// In this case it is a simple value service.
+angular.module('myApp.services')
+	.factory('courseProvider', ['$http', '$q', '$resource', 'parseSettings',
+
+		function($http, $q, $resource, parseSettings) {
+
+			
+
+			var courseRef = $resource('https://api.parse.com/1/classes/mycourses/:objectId', null, {
+				get : {
+					method: 'GET',
+					headers: parseSettings,
+					isArray: true,
+					transformResponse : function(data){
+						var raw = angular.fromJson(data);
+						console.log(raw);
+						return raw.results;
+					}
+				},
+				create: {
+					method : 'POST',
+					isArray : false,
+					headers: parseSettings
+				},
+				update: {
+					method: 'PUT',
+					isArray: false,
+					headers: parseSettings
+				}
+			})
+
+
+			function getCourses() {
+				return courseRef.get();
+			}
+
+			function addCourse(course) {
+				courseRef.create(course);
+			}
+
+			function getCourse(id) {
+
+				return courseRef.get({
+					id: id
+				});
+
+			}
+			function updateavg(avg,id){
+				return courseRef.update({ objectId:id },{
+				    avg_rating:avg
+					//'courseID': courseID
+				});
+			}
+
+			return {
+				getCourses: getCourses,
+				add: addCourse,
+				get: getCourse,
+				callUpdate:updateavg
 			};
 
 		}

@@ -20,7 +20,7 @@
 		<div ng-bind="course.price | currency  ">{{course.name}}</div>
 	</div>
 	<div class="col-md-1">
-		<a ng-href='#/reviews/{{course.id}}' class="btn btn-success">Add Review</a>
+		<a ng-href='#/reviews/{{course.objectId}}' class="btn btn-success">Add Review</a>
 	</div>
 	<div class="col-md-2 col-md-offset-1 btn btn-primary">
 		Average rating
@@ -31,13 +31,19 @@
 </div>
 <h1>Reviews</h1>
 <div class="row" style="background:#222;color:#000;">
-	<div class="col-md-3 col-md-offset-1">Username</div>
-	<div class="col-md-3 col-md-offset-1">Review</div>
-	<div class="col-md-3 col-md-offset-1">Rating</div>
+	<div class="col-md-2 col-md-offset-1">Username</div>
+	<div class="col-md-2 col-md-offset-1">Review</div>
+	<div class="col-md-2 col-md-offset-1">Rating</div>
+	<div class="col-md-1">Likes</div>
 </div>
 <div class="row well" ng-repeat="review in reviews | orderBy:-review.createdAt">
-	<div class="col-md-3 col-md-offset-1" ng-bind="review.name"></div>
-	<div class="col-md-3 col-md-offset-1" ng-bind="review.myreview"></div>
-	<div class="col-md-3 col-md-offset-1" ng-bind="review.rating"></div>
+	<div class="col-md-2 col-md-offset-1" ng-bind="review.name"></div>
+	<div class="col-md-2 col-md-offset-1" ng-bind="review.myreview"></div>
+	<div class="col-md-2 col-md-offset-1" ng-bind="review.rating"></div>
+	<div class="col-md-1" ng-bind="review.likes"></div>
+	<div class="col-md-2">
+    <a ng-click="review.likes=review.likes+1;update(review)" class="btn btn-danger">Like</a>
+	<!--<a href="#" class="col-md-1 col-md-offset-1 btn btn-danger" ng-click="increcount(review)">Useful</a>-->
+</div>
 </div>
 </div>

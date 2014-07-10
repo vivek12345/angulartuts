@@ -9,6 +9,7 @@ angular.module('myApp.controllers')
 				} else {
 					console.log(review);
 					review.course_id=courseId;
+					review.likes=0;
 					reviewProvider.add(review);
 					
 					console.log('saving review : ' + review.name);

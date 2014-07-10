@@ -10,14 +10,12 @@ angular.module('myApp.services')
 
 		function($http, $q, $resource, $routeParams,parseSettings) {
 			
-	var courseRef = $resource('https://api.parse.com/1/classes/courses/:course_id', null, {
+	var courseRef = $resource('https://api.parse.com/1/classes/courses/:objectId', null, {
 				get : {
 					method: 'GET',
 					headers: parseSettings,
 					isArray: true,
-					params: {
-						where : {'course_id': course_id}
-                    },
+					
 					transformResponse : function(data){
 						var raw = angular.fromJson(data);
 						return raw.results;
@@ -61,10 +59,13 @@ function getReviews(id)
 
 
 
-			return courseRef.get({
-					course_id:id,
+			return courseRef.get
+			(
+				{
+					where: {'course_id':id}
 					
-				});	
+				}
+			);	
 			/*	var targetCourse=[];
 				console.log(id);
 				var reviews=getReview();
@@ -112,19 +113,18 @@ function getReviews(id)
 
 				return avg;
 			}
-			function upd(id)
+			function updatelikes(review)
 			{
-				return courseRef.update({
-					myid:'UxiIjlwFfW',
-					name:'vivekfdsfsdjfdsj isnabkjvyer'
-				})
+					return courseRef.update({ objectId:review.objectId },{
+				   	likes:review.likes
+				});
 			}
 			return {
 				
 				get: getReviews,
 				add:addReview,
 				getavg:avg,
-				getupdate:upd
+				callupdate:updatelikes
 			};
 
 }

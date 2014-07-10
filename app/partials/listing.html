@@ -4,7 +4,7 @@
       <img class="col-md-12 img-responsive" ng-src="{{course.pic}}"/>
     </div>
     <div class="col-md-6">
-    <a ng-href='#/details/{{course.id}}'><h2 ng-bind="course.name"></h2></a>
+    <a ng-href='#/details/{{course.objectId}}'><h2 ng-bind="course.name"></h2></a>
 
       <p style="float:right;">
 
@@ -22,5 +22,20 @@
       Price:
       <span ng-bind="course.price | currency"></span>
     </div>
+    <div class="col-md-2">
+    Average Rating
+    <div class="progress">
+<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="10" style="width: {{course.avg_rating*10}}%">
+</div>
+</div>
+</div>
+<!--
+    <div class="col-md-2 btn btn-primary">
+    Average rating
+    <div ng-bind="course.avg_rating | number:2">
+    </div>
   </div>
+  </div>
+  -->
+</div>
 </div>
