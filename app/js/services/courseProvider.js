@@ -98,9 +98,12 @@ angular.module('myApp.services')
 
 			function getCourse(id) {
 
-				return courseRef.get({
-					id: id
-				});
+				return courseRef.get(
+					{
+					where: {'objectId':id}
+					
+					}
+				);
 
 			}
 			function updateavg(avg,id){

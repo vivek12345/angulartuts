@@ -10,7 +10,7 @@
 
         
         <span ng-show="!showCompleteDescription">{{course.description | limitTo : 300}}</span>
-        <span ng-show="showCompleteDescription">{{course.description}}</span>
+        <span ng-show="showCompleteDescription" style="border-right:2px dotted #fff;">{{course.description}}</span>
         <span ng-show="course.description.length >300 && !showCompleteDescription">...</span>
         <a href='' ng-show="course.description.length >
           300 && !showCompleteDescription" ng-click="showCompleteDescription = true" >more
@@ -22,9 +22,9 @@
       Price:
       <span ng-bind="course.price | currency"></span>
     </div>
-    <div class="col-md-2">
-    Average Rating
-    <div class="progress">
+    <div class="col-md-3">
+    Average Rating:{{course.avg_rating | number:2}}
+    <div class="myprogress progress">
 <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="10" style="width: {{course.avg_rating*10}}%">
 </div>
 </div>
