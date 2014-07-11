@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row well" ng-repeat="course in courses | orderBy:orderTerm | filter:searchTerm">
+  <div class="row well myrow" ng-repeat="course in courses | orderBy:sortCond:rev | filter:searchTerm">
     <div class="col-md-3">
       <img class="col-md-12 img-responsive" ng-src="{{course.pic}}"/>
     </div>
@@ -18,17 +18,19 @@
 
       </p>
     </div>
-    <div class="col-md-3">
+    <!--div class="col-md-3"-->
+    <div>
       Price:
       <span ng-bind="course.price | currency"></span>
     </div>
-    <div class="col-md-3">
+    <!--div class="col-md-3">
     Average Rating:{{course.avg_rating | number:2}}
     <div class="myprogress progress">
 <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="10" style="width: {{course.avg_rating*10}}%">
 </div>
 </div>
-</div>
+</div-->
+<progress-preview preview-content="description"></progress-preview>
 <!--
     <div class="col-md-2 btn btn-primary">
     Average rating

@@ -32,6 +32,7 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Home</a></li>
         <li><a href="#">Help</a></li>
+        
 
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Courses <span class="caret"></span></a>
@@ -49,18 +50,23 @@
       <form class="navbar-form navbar-left" role="search">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search" ng-model="searchTerm">
-          <select class="form-control" ng-model="orderTerm">
-          <option value="price">Price</option>
-          <option value="name">Name</option>
-          <option value="avg_rating">rating</option>
-
-        </select>
+          <div class="btn-group">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+          SortBy <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+          <li><a href="#" ng-click="sortCond='price';">Price</a></li>
+          <li><a href="#" ng-click="sortCond='name'">Name</a></li>
+          <li><a href="#" ng-click="sortCond='avg_rating';rev=!rev">Rating</a></li>
+          </ul>
+</div>
         </div>
       </form>
 
+
       
         
-        
+       
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#/new">New Course</a></li>
         <li class="dropdown">
@@ -69,14 +75,14 @@
                         <li>
                            <div class="row">
                               <div class="col-md-12">
-                                 <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
+                                 <form class="form" ng-show="!showsignup" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
                                     <div class="form-group">
                                        <label class="sr-only" for="exampleInputEmail2">Email address</label>
-                                       <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
+                                       <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" ng-model="user.email" required>
                                     </div>
                                     <div class="form-group">
                                        <label class="sr-only" for="exampleInputPassword2">Password</label>
-                                       <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
+                                       <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" ng-model="user.password" required>
                                     </div>
                                     <div class="checkbox">
                                        <label>
@@ -87,6 +93,31 @@
                                        <button type="submit" class="btn btn-success btn-block">Sign in</button>
                                     </div>
                                  </form>
+                                 <form class="form" ng-show="showsignup" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav" name="newUserForm">
+                                    <div class="form-group">
+                                       <label class="sr-only" for="exampleInputEmail2">Username</label>
+                                       <input type="text" class="form-control" placeholder="Username" ng-model="user.username" required>
+                                    </div>
+                                    <div class="form-group">
+                                       <label class="sr-only" for="exampleInputEmail2">Email address</label>
+                                       <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" ng-model="user.email" required>
+                                    </div>
+                                    <div class="form-group">
+                                       <label class="sr-only" for="exampleInputPassword2">Password</label>
+                                       <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" ng-model="user.password" required>
+                                    </div>
+                                    <div class="checkbox">
+                                       <label>
+                                       <input type="checkbox"> Remember me
+                                       </label>
+                                    </div>
+                                    <div class="form-group">
+                                       <button type="submit" class="btn btn-success btn-block" ng-click="signUp(user,newUserForm)">Sign up</button>
+                                    </div>
+                                 </form>
+                                 <a href="#" class="mybutton" ng-show="!showsignup" ng-click="showsignup=true">New user? Signup</a>
+                                 <span ng-show="showsignup">Already a user? </span><a href="#" class="mybutton" ng-show="showsignup" ng-click="showsignup=false">Login Here</a>
+                                 
                               </div>
                            </div>
                         </li>
@@ -105,6 +136,7 @@
 
 </nav>
 
+
 <ng-view>
 </ng-view>
 
@@ -112,6 +144,7 @@
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
   -->
+  
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
    <script src="bower_components/angular-resource/angular-resource.js"></script>
@@ -127,6 +160,7 @@
   <script src="js/filters.js"></script>
   <script src="js/directives.js"></script>
   <script src="js/Controller/listingController.js"></script>
+  <script src="js/Controller/userController.js"></script>
 <script src="js/services/courseProvider.js"></script>
 <script src="js/services/reviewProvider.js"></script>
 

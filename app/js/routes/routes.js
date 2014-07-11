@@ -17,5 +17,6 @@ $routeProvider.when('/reviews/:id', {
 			controller: 'reviewsController'
 		});
 
+
   $routeProvider.otherwise({redirectTo: '/listing'});
 }]);

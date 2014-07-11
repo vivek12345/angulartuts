@@ -25,4 +25,11 @@ angular.module('myApp.controllers')
    			templateUrl : 'partials/preview.html',
    
  	}
+}).directive('progressPreview', function()
+	{
+ 		return {
+   			restrict: 'E',
+   			templateUrl : 'partials/progress.html',
+   
+ 	}
 })

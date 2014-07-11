@@ -1,39 +1,55 @@
 <div class="container">
-<div class="row">
+<div class="row well">
 	<div class="col-md-3">
 		<img ng-src="{{course.pic}}" width="200px" />
-	</div>
-	<div class="col-md-4">
 		<div>
-			<a href='' ng-click="showCourseDetails(course)" class="h4">{{course.name | uppercase}}</a>
+		<div ng-bind="course.price | currency  ">{{course.name}}</div>
 		</div>
+		<!--
+		<p style="color:#ddcc64;">Average Rating:{{course.avg_rating | number:2}}</p>
+		<div class="progress">
+		<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="10" style="width: {{course.avg_rating*10}}%">
+		</div>
+		</div>
+		-->
+		
+		<progress-preview preview-content="description"></progress-preview>
+
+	</div>
+
+	<div class="col-md-5">
+		<div>
+			 <a href='' ng-click="showCourseDetails(course)" class="h4">{{course.name | uppercase}}</a>
+		</div>
+
 		<div>
 			<p>
 				
 				<span>{{course.description}}</span>
+				<h3>Reviews</h3> 
 				
 				
 			</p>
 		</div>
-		<p style="color:#ddcc64;">Average Rating:{{course.avg_rating | number:2}}</p>
-		<div class="progress">
-		<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="10" style="width: {{course.avg_rating*10}}%">
-		</div>
-		</div>
+		
 	</div>
-	<div class="col-md-1">
+	<!--div class="col-md-1">
 		<div ng-bind="course.price | currency  ">{{course.name}}</div>
-	</div>
+	</div-->
 	<div class="col-md-1">
 		<a ng-href='#/reviews/{{course.objectId}}' class="btn btn-success">Add Review</a>
 	</div>
+	
 	<div class="col-md-2 col-md-offset-1 btn btn-primary">
 		Average rating
-		<div ng-bind="avg | number:2">
+		<div ng-bind="course.avg_rating | number:2">
 		</div>
+
 	</div>
 
-</div>
+
+
+<!--
 <h1>Reviews</h1>
 <div class="row well" style="background:#222;color:#000;margin-bottom:0px;border-radius:0px;">
 	<div class="col-md-2 col-md-offset-1">Username</div>
@@ -48,7 +64,56 @@
 	<div class="col-md-1" ng-bind="review.likes"></div>
 	<div class="col-md-2">
     <a ng-click="review.likes=review.likes+1;update(review)" class="btn btn-danger">Like</a>
-	<!--<a href="#" class="col-md-1 col-md-offset-1 btn btn-danger" ng-click="increcount(review)">Useful</a>-->
+	
+</div>
+</div>
+</div>
+-->
+
+    <div class="row" ng-repeat="review in reviews | orderBy:-review.createdAt">
+        <div class="[ col-xs-12 col-sm-offset-3 col-sm-8 ]">
+            <div class="[ panel panel-default ] panel-google-plus">
+                <!--div class="dropdown">
+                    <span class="dropdown-toggle" type="button" data-toggle="dropdown">
+                        <span class="[ glyphicon glyphicon-chevron-down ]"></span>
+                    </span>
+                    <ul class="dropdown-menu" role="menu">
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                    </ul>
+                </div-->
+                
+                <div class="panel-heading">
+                    <img class="[ img-circle pull-left ]" src="http://qph.is.quoracdn.net/main-qimg-3b0b70b336bbae35853994ce0aa25013?convert_to_webp=true" style="width:50px;height:40px;" alt="image" />
+                    <h3>{{review.name}}</h3>
+                    <h5><span>Shared publicly</span> - <span>{{review.createdAt}}</span> </h5>
+                </div>
+                <div class="panel-body">
+                    <p>{{review.myreview}}</p>
+                </div>
+                <div class="panel-footer">
+                	<button type="button" class="[ btn btn-default ]" ng-click="review.likes=review.likes+1;update(review)"><span class="glyphicon glyphicon-thumbs-up"></span></button>
+                    <button type="button" class="[ btn btn-default ]">
+                        <span ng-bind="review.likes"></span>
+                    </button>
+
+                    
+                </div>
+                <!--div class="panel-google-plus-comment">
+                    <img class="img-circle" src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s46" alt="User Image" />
+                    <div class="panel-google-plus-textarea">
+                        <textarea rows="4"></textarea>
+                        <button type="submit" class="[ btn btn-success disabled ]">Post comment</button>
+                        <button type="reset" class="[ btn btn-default ]">Cancel</button>
+                    </div>
+                    <div class="clearfix"></div>
+                </div-->
+            </div>
+        </div>
+        
 </div>
 </div>
 </div>

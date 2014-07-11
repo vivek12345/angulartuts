@@ -19,12 +19,7 @@ angular.module('myApp.controllers')
 			courseProvider.get(courseId).
 			$promise.then(function(data){
 				$scope.course = data[0];
-
-				
-			});
-			
-			/*reviewProvider.getupdate(2);*/
-			reviewProvider.get(courseId).
+				reviewProvider.get(courseId).
 			$promise.then(function(data){
 				/*angular.forEach(data,function(item,index){
 					if(item.course_id==courseId)
@@ -41,16 +36,11 @@ angular.module('myApp.controllers')
 				
 			})
 
-
-
+				
+			});
 			
+			/*reviewProvider.getupdate(2);*/
 			
-
-
-
-			
-			
-
 
 		}
 	]);
